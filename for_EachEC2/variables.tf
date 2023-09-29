@@ -13,11 +13,11 @@ variable "instance_type" {
   description = "Instance type"
 }
 
-variable "key_name" {
-  type = string
-  description = "Name of the existing AWS key pair"
-  default = "ishav_key"
-}
+# variable "key_name" {
+#   type = string
+#   description = "Name of the existing AWS key pair"
+#   default = "ishav_key"
+# }
 
 variable "tags" {
   type = map(string)
