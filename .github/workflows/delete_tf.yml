@@ -5,7 +5,11 @@ on:
     inputs:
       destroy:
         description: 'Destroy all resources'
-
+env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY}}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ap-south-1
+  
 jobs:
   destroy:
    runs-on: ubuntu-latest
@@ -14,30 +18,26 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Download Terraform Outputs Artifacts
-      uses: actions/download-artifact@v2
-      with:
-        name: terraform-outputs
-
-    - name: source Terraform Outputs
-      run: |
-        source module/terraform-outputs.env
-      shell: bash
-      working-directory: module/
-
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
 
     - name: Initialize Terraform
-      run: terraform init
       working-directory: module/
+      run: terraform init
+      env:
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.region }}
+
+      
       
     - name: Destroy Resources
-      run: terraform destroy -auto-approve
       working-directory: module/
-
+      run: terraform destroy -auto-approve
       env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY}}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: us-east-1
-  
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.region }}
+      
+
+      
