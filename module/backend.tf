@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = "ishav-back-bucket"
-    key = "ishav2.tfstate"
+    bucket = "ishav-backend-bucket"
+    key = "ishav.tfstate"
     region = "ap-south-1"
   }
 }
