@@ -1,4 +1,4 @@
-variable "Name" {
+variable "loop" {
   type = map(object({
     ami = string
     instance_type = string

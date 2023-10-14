@@ -1,7 +1,7 @@
 module "myEC2Instance" {
     source = "../for_EachEC2"
-    for_each = var.Name
-    Name = each.value
+    for_each = var.loop
+    loop = each.value
     ami = each.value.ami
     instance_type = each.value.instance_type
     # key_name = var.key_name

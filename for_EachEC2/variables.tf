@@ -1,4 +1,4 @@
-variable "Name" {
+variable "loop" {
   type = map
   description = "Give names of instances"
 }
