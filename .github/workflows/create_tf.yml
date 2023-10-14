@@ -1,9 +1,9 @@
-name: 'Teraform Github AWS Deployment'
+name: 'Teraform Github AWS Creation'
 
 on:
   push:
     branches:
-        - Dev
+        - main
 
 env:
   region: ap-south-1
@@ -42,5 +42,16 @@ jobs:
     # - name: Clean up
     #   run: rm -rf .terraform .terraform.lock.hcl tfplan
 
+    - name: Save Terraform Outputs
+      run: |
+          cd module/
+          echo "ec2_instance_id = $(terraform output -raw ec2_instance_id)" >> terraform_outputs.env
+      shell: bash
+
+    - name: Archive Terraform Output
+      uses: actions/upload-artifact@v2
+      with:
+        name: terraform-outputs
+        path: module.terraform_outputs.env
 
   
