@@ -8,7 +8,7 @@ on:
         required: true
 
 env:
-  region: us-west-1
+  region: ap-south-1
   
 jobs:
   destroy:
@@ -27,8 +27,7 @@ jobs:
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: 1.6.1
+      
 
     - name: Initialize Terraform
       working-directory: module/
@@ -41,7 +40,7 @@ jobs:
       
     - name: Destroy Resources
       working-directory: module/
-      run: terraform destroy -var-file=ishav.tfvars -auto-approve 
+      run: terraform destroy  -auto-approve 
       
       
 
