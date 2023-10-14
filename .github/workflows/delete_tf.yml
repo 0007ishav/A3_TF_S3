@@ -6,7 +6,8 @@ on:
       destroy:
         description: 'Destroy all resources'
 
-  
+env:
+  region: us-west-1
 jobs:
   destroy:
    runs-on: ubuntu-latest
