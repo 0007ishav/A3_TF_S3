@@ -35,7 +35,7 @@ jobs:
       working-directory: module/
 
     - name: Apply Terraform changes
-      run: terraform apply -var-file=ishav.tfvars -auto-approve tfplan
+      run: terraform apply  -auto-approve tfplan
       working-directory: module/
 
     
