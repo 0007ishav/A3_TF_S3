@@ -5,6 +5,7 @@ on:
     inputs:
       destroy:
         description: 'Destroy all resources'
+        required: true
 
 env:
   region: us-west-1
@@ -33,12 +34,12 @@ jobs:
       
     - name: Terraform Plan Destroy
       working-directory: module/
-      run: terraform plan --var-file=ishav.tfvars -destroy  -out=tfplan
+      run: terraform plan -var-file=ishav.tfvars -destroy  -out=tfplan
       
       
     - name: Destroy Resources
       working-directory: module/
-      run: terraform destroy--var-file=ishav.tfvars -auto- "tfplan"
+      run: terraform destroy -auto-approve "tfplan"
       
       
 
