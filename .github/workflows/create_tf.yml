@@ -31,7 +31,7 @@ jobs:
       working-directory: module/
 
     - name: Plan Terraform changes
-      run: terraform plan -out=tfplan
+      run: terraform plan -var-file=ishav.tfvars -out=tfplan
       working-directory: module/
 
     - name: Apply Terraform changes
