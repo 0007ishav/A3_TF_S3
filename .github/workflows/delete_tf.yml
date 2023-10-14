@@ -1,0 +1,43 @@
+name: 'Deleting Resources'
+
+on:
+  workflow_dispatch:
+    inputs:
+      destroy:
+        description: 'Destroy all resources'
+
+jobs:
+  destroy:
+   runs-on: ubuntu-latest
+   
+   steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Download Terraform Outputs Artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: terraform-outputs
+
+    - name: source Terraform Outputs
+      run: |
+        source module/terraform-outputs.env
+      shell: bash
+      working-directory: module/
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Initialize Terraform
+      run: terraform init
+      working-directory: module/
+      
+    - name: Destroy Resources
+      run: terraform destroy -auto-approve
+      working-directory: module/
+
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: us-east-1
+  
