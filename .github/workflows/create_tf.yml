@@ -1,9 +1,9 @@
 name: 'Teraform Github AWS Creation'
 
 on:
-  push:
-    branches:
-        - Dev
+  # push:
+  #   branches:
+  #       - Dev
 
 env:
   region: ap-south-1
@@ -26,7 +26,6 @@ jobs:
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v1
     
-
     - name: Initialize Terraform
       run: terraform init
       working-directory: module/
@@ -36,22 +35,11 @@ jobs:
       working-directory: module/
 
     - name: Apply Terraform changes
-      run: terraform apply -auto-approve tfplan
+      run: terraform apply -var-file=ishav.tfvars -auto-approve tfplan
       working-directory: module/
 
-    # - name: Clean up
-    #   run: rm -rf .terraform .terraform.lock.hcl tfplan
+    
 
-    - name: Save Terraform Outputs
-      run: |
-          cd module/
-          echo "ec2_instance_id = $(terraform output -raw ec2_instance_id)" >> terraform_outputs.env
-      shell: bash
-
-    - name: Archive Terraform Output
-      uses: actions/upload-artifact@v2
-      with:
-        name: terraform-outputs
-        path: module.terraform_outputs.env
+    
 
   
