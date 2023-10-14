@@ -27,19 +27,21 @@ jobs:
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 1.6.1
 
     - name: Initialize Terraform
       working-directory: module/
       run: terraform init
       
-    - name: Terraform Plan Destroy
-      working-directory: module/
-      run: terraform plan -var-file=ishav.tfvars -destroy  -out=tfplan
+    # - name: Terraform Plan Destroy
+    #   working-directory: module/
+    #   run: terraform plan -var-file=ishav.tfvars -destroy  -out=tfplan
       
       
     - name: Destroy Resources
       working-directory: module/
-      run: terraform destroy -auto-approve "tfplan"
+      run: terraform destroy -var-file=ishav.tfvars -auto-approve 
       
       
 
