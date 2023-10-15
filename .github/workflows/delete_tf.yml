@@ -40,7 +40,7 @@ jobs:
       
     - name: Destroy Resources
       working-directory: module/
-      run: terraform destroy  -auto-approve 
+      run: terraform destroy -var-file=ishav.tfvars  -auto-approve 
       
       
 
