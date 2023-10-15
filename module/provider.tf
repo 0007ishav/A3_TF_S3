@@ -1,7 +1,3 @@
-# provider "aws" {
-#   region = "ap-south-1"
-# }
-
 provider "aws" {
-  region = "us-west-1"
+  region = "ap-south-1"
 }

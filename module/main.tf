@@ -4,7 +4,7 @@ module "myEC2Instance" {
     loop = each.value
     ami = each.value.ami
     instance_type = each.value.instance_type
-    # key_name = var.key_name
+    key_name = var.key_name
     
     subnet_id = module.ishavPublicSubnet.PS_id
 
