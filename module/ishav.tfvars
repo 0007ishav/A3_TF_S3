@@ -24,8 +24,6 @@ volume_tags = {
     Owner = "ishav@cloudeq.com",
     Purpose = "Training"    
 }
-key_name = "ishav_key"
-
 
 cidr_block_vpc = "10.0.0.0/16"
 cidr_block_pubSub = "10.0.0.0/24"
