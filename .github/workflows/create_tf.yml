@@ -3,7 +3,7 @@ name: 'Teraform Github AWS Creation'
 on:
   push:
     branches:
-        - Dev
+        - master
 
 env:
   region: ap-south-1
