@@ -8,6 +8,7 @@ on:
     inputs:
       region:
         description: 'Deployment Region'
+        required: true
 
 # env:
 #   region: ap-south-1
