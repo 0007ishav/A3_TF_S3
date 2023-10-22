@@ -12,6 +12,7 @@ on:
   
 jobs:
   destroy:
+   environment: Dev
    runs-on: ubuntu-latest
    
    steps:
